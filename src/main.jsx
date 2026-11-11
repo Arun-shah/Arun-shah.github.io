@@ -1,89 +1,147 @@
-import React, { useState } from "react";
-import { createRoot } from "react-dom/client";
-import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, Menu, X, Code2, Sparkles, Terminal, Globe, Cpu } from "lucide-react";
-import "./styles.css";
-
-const projects = [
-  { number: "01", title: "Vehicle Rental System", type: "C++ · Console Application", description: "A vehicle rental management system with user registration, rental/return workflows, and billing.", tags: ["C++", "OOP", "File Handling"], link: "https://github.com/Arun-shah/Vehicle-rental-system-" },
-  { number: "02", title: "Birthday Animation", type: "Python · Creative Coding", description: "A personalized birthday animation made with Python and Turtle graphics.", tags: ["Python", "Turtle", "Animation"], link: "https://github.com/Arun-shah/birthday" },
-  { number: "03", title: "BIT Semester Projects", type: "C / C++ · Academic", description: "A collection of programming practice and academic projects built during my BIT studies.", tags: ["C", "C++", "Problem Solving"], link: "https://github.com/Arun-shah/1st-semester-projects" }
-];
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { motion } from 'framer-motion'
+import {
+  ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin,
+  Code2, GraduationCap, Terminal, Sparkles, ExternalLink,
+  Menu, X, Download, Globe, Cpu
+} from 'lucide-react'
+import './styles.css'
 
 const skills = [
-  { name: "C / C++", level: "Programming fundamentals", icon: Code2 },
-  { name: "Python", level: "Completed a Python course", icon: Terminal },
-  { name: "HTML & CSS", level: "Building responsive websites", icon: Globe },
-  { name: "OOP & Problem Solving", level: "Academic and project practice", icon: Cpu }
-];
+  { name: 'C / C++', level: 'Programming', icon: Code2 },
+  { name: 'Python', level: 'Programming', icon: Terminal },
+  { name: 'HTML & CSS', level: 'Web foundations', icon: Globe },
+  { name: 'Object-Oriented Programming', level: 'Core concept', icon: Cpu },
+  { name: 'React', level: 'Learning & building', icon: Code2 },
+  { name: 'Git & GitHub', level: 'Version control', icon: Github },
+]
+
+const projects = [
+  {
+    number: '01',
+    name: 'Vehicle Rental System',
+    type: 'C++ · Console Application',
+    description: 'A menu-driven vehicle rental project focused on user management, vehicle operations, rental records and billing.',
+    tags: ['C++', 'OOP', 'File Handling'],
+    link: 'https://github.com/Arun-shah/Vehicle-rental-system-',
+  },
+  {
+    number: '02',
+    name: 'Birthday Animation',
+    type: 'Python · Creative Coding',
+    description: 'A small creative coding project using Python to bring a personal birthday greeting to life with animation.',
+    tags: ['Python', 'Animation', 'Turtle'],
+    link: 'https://github.com/Arun-shah/birthday',
+  },
+  {
+    number: '03',
+    name: 'BIT Semester Projects',
+    type: 'Academic · Programming',
+    description: 'A collection of academic programming exercises and projects developed while studying Information Technology.',
+    tags: ['C / C++', 'Problem Solving', 'Learning'],
+    link: 'https://github.com/Arun-shah/1st-semester-projects',
+  },
+]
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
+  const [menuOpen, setMenuOpen] = React.useState(false)
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <div className="site-shell">
-      <div className="ambient ambient-one" /><div className="ambient ambient-two" />
-      <header className="nav-wrap">
-        <a className="brand" href="#home" onClick={closeMenu}><span className="brand-mark">A<span>.</span></span><span>ARUN SAH</span></a>
+      <div className="ambient ambient-one" />
+      <div className="ambient ambient-two" />
+      <header className="topbar">
+        <a className="brand" href="#home" onClick={closeMenu}><span className="brand-mark">A</span><span>ARUN<span className="brand-dot">.</span></span></a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? <X /> : <Menu />}</button>
-        <nav className={menuOpen ? "nav-links open" : "nav-links"}>
-          {["About", "Skills", "Projects", "Contact"].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={closeMenu}>{item}</a>)}
-          <a className="nav-cta" href="mailto:hello@arun-sah.com.np">Let’s talk <ArrowUpRight size={15}/></a>
+        <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
+          {['About', 'Skills', 'Projects', 'Contact'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={closeMenu}>{item}</a>)}
+          <a className="nav-cta" href="https://mail.google.com/mail/?view=cm&fs=1&to=info%40arun-sah.com.np">Let's talk <ArrowUpRight size={15} /></a>
         </nav>
       </header>
 
       <main>
-        <section className="hero section" id="home">
-          <motion.div className="hero-copy" initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.7}}>
-            <div className="eyebrow"><span className="status-dot"/> AVAILABLE FOR LEARNING & COLLABORATION</div>
-            <h1>Building ideas<br/>into <span className="gradient-text">digital reality.</span></h1>
-            <p className="hero-intro">Hey, I’m <strong>Arun Sah</strong> — a BIT student, programmer, and aspiring software developer from Nepal. I enjoy turning ideas into useful, thoughtful digital experiences.</p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#projects">Explore my work <ArrowUpRight size={17}/></a>
-              <a className="button button-ghost" href="#contact">Get in touch</a>
-            </div>
-            <div className="hero-socials">
-              <a href="https://github.com/Arun-shah" target="_blank" rel="noreferrer"><Github size={18}/> GitHub</a>
-              <a href="mailto:hello@arun-sah.com.np"><Mail size={18}/> Email</a>
-            </div>
+        <section className="hero section-wrap" id="home">
+          <div className="hero-copy">
+            <motion.div className="eyebrow" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
+              <span className="status-dot" /> AVAILABLE FOR LEARNING & OPPORTUNITIES
+            </motion.div>
+            <motion.h1 initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .1 }}>
+              Building ideas<br />into <span className="gradient-text">digital reality.</span>
+            </motion.h1>
+            <motion.p className="hero-description" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .2 }}>
+              Hi, I'm <strong>Arun Sah</strong> — a BIT student, curious programmer and aspiring software developer who loves learning by building.
+            </motion.p>
+            <motion.div className="hero-actions" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .3 }}>
+              <a className="button button-primary" href="#projects">Explore my work <ArrowUpRight size={17} /></a>
+              <a className="button button-ghost" href="https://mail.google.com/mail/?view=cm&fs=1&to=info%40arun-sah.com.np"><Mail size={17} /> Get in touch</a>
+            </motion.div>
+            <motion.div className="hero-meta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .6 }}>
+              <span><MapPin size={15} /> Nepal</span><span className="meta-divider" /><span><GraduationCap size={16} /> BIT Student</span>
+            </motion.div>
+          </div>
+
+          <motion.div className="hero-visual" initial={{ opacity: 0, scale: .92, x: 20 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: .8, delay: .2 }}>
+            <div className="portrait-glow" />
+            <div className="portrait-frame"><img src="/profile.jpg" alt="Portrait of Arun Sah" /></div>
+            <div className="floating-card card-code"><span className="mini-icon"><Code2 size={17} /></span><span><b>Developer</b><small>In progress, every day</small></span></div>
+            <div className="floating-card card-python"><span className="python-symbol">Py</span><span><b>Python</b><small>Course completed</small></span></div>
+            <div className="orbit orbit-one" /><div className="orbit orbit-two" />
+            <div className="visual-caption">LEARN · BUILD · IMPROVE</div>
           </motion.div>
-          <motion.div className="hero-visual" initial={{opacity:0,scale:.92}} animate={{opacity:1,scale:1}} transition={{duration:.8,delay:.15}}>
-            <div className="portrait-frame">
-              <div className="portrait-glow"/>
-              <img className="portrait" src="/profile.jpg" alt="Arun Sah profile portrait" onError={(e)=>{e.currentTarget.style.display="none";e.currentTarget.nextElementSibling.style.display="flex";}}/>
-              <div className="portrait-placeholder"><div className="placeholder-icon"><Sparkles/></div><strong>Your photo goes here</strong><span>Replace public/profile.jpg</span></div>
-              <div className="portrait-label"><span className="label-dot"/> STUDENT · DEVELOPER</div>
-            </div>
-            <div className="floating-card card-code"><span className="mini-dot"/> <code>while (learning) {"{"}<br/>&nbsp;&nbsp;build();<br/>{"}"}</code></div>
-            <div className="floating-card card-badge"><span className="badge-icon"><Code2 size={16}/></span><div><strong>Always curious</strong><small>Always building</small></div></div>
-          </motion.div>
-          <a className="scroll-cue" href="#about"><ArrowDown size={15}/> SCROLL TO EXPLORE</a>
+          <a className="scroll-cue" href="#about"><span>SCROLL TO EXPLORE</span><ArrowDown size={15} /></a>
         </section>
 
-        <section className="section about-section" id="about">
+        <section className="about section-wrap section-block" id="about">
           <div className="section-kicker">01 / ABOUT ME</div>
           <div className="about-grid">
-            <h2>Curiosity is my<br/><span className="muted">favorite tool.</span></h2>
-            <div className="about-text"><p>I’m currently pursuing a Bachelor of Information Technology (BIT) at <strong>KIST College of Information Technology</strong>. My journey in tech started with programming fundamentals, and it keeps growing with every project I build.</p><p>I’m focused on strengthening my software development skills, exploring new technologies, and creating projects that solve real problems. I believe consistent practice and curiosity make great developers.</p><div className="about-note"><Sparkles size={18}/><span>Currently learning, experimenting, and building one project at a time.</span></div></div>
+            <h2>Curiosity is where<br /><span className="muted-heading">everything begins.</span></h2>
+            <div className="about-text">
+              <p>I'm currently pursuing a <strong>Bachelor of Information Technology (BIT)</strong> at <strong>KIST College of Information Technology</strong>. I enjoy understanding how technology works and turning what I learn into practical projects.</p>
+              <p>My journey started with C and C++. I've also completed a Python language course and continue exploring web development, software concepts and problem-solving.</p>
+              <div className="education-line"><GraduationCap size={20} /><div><b>Bachelor of Information Technology</b><span>KIST College of Information Technology</span></div></div>
+            </div>
           </div>
         </section>
 
-        <section className="section skills-section" id="skills">
-          <div className="section-heading"><div><div className="section-kicker">02 / TOOLKIT</div><h2>Things I work with<span className="gradient-text">.</span></h2></div><p>A growing toolkit for turning concepts<br/>into practical projects.</p></div>
-          <div className="skills-grid">{skills.map((skill,i)=><motion.div className="skill-card" key={skill.name} initial={{opacity:0,y:18}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.08}}><div className="skill-icon"><skill.icon size={20}/></div><h3>{skill.name}</h3><p>{skill.level}</p><span className="skill-index">0{i+1}</span></motion.div>)}</div>
+        <section className="skills-section section-wrap section-block" id="skills">
+          <div className="section-kicker">02 / TOOLKIT</div>
+          <div className="section-heading"><h2>Skills I'm growing.</h2><p>Tools and technologies I use, practice and explore.</p></div>
+          <div className="skills-grid">
+            {skills.map((skill, i) => <motion.div className="skill-card" key={skill.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .07 }}><div className="skill-icon"><skill.icon size={21} /></div><div><h3>{skill.name}</h3><span>{skill.level}</span></div><ArrowUpRight className="skill-arrow" size={17} /></motion.div>)}
+          </div>
         </section>
 
-        <section className="section projects-section" id="projects">
-          <div className="section-heading"><div><div className="section-kicker">03 / SELECTED WORK</div><h2>Projects I’ve built<span className="gradient-text">.</span></h2></div><a className="text-link" href="https://github.com/Arun-shah" target="_blank" rel="noreferrer">More on GitHub <ArrowUpRight size={16}/></a></div>
-          <div className="projects-list">{projects.map((project,i)=><motion.article className="project-row" key={project.number} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.1}}><div className="project-number">{project.number}</div><div className="project-main"><span className="project-type">{project.type}</span><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag=><span key={tag}>{tag}</span>)}</div></div><a className="project-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`View ${project.title}`}><ArrowUpRight/></a></motion.article>)}</div>
+        <section className="projects-section section-wrap section-block" id="projects">
+          <div className="section-kicker">03 / SELECTED WORK</div>
+          <div className="section-heading projects-heading"><div><h2>Things I've built.</h2><p>A few steps in my learning journey.</p></div><a className="text-link" href="https://github.com/Arun-shah" target="_blank" rel="noreferrer">View GitHub <ArrowUpRight size={16} /></a></div>
+          <div className="project-list">
+            {projects.map((project, i) => <motion.article className="project-card" key={project.number} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .1 }}>
+              <span className="project-number">{project.number}</span><div className="project-main"><span className="project-type">{project.type}</span><h3>{project.name}</h3><p>{project.description}</p><div className="tag-row">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></div><a className="project-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`View ${project.name}`}><ArrowUpRight /></a>
+            </motion.article>)}
+          </div>
         </section>
 
-        <section className="section contact-section" id="contact">
-          <div className="contact-card"><div className="contact-orb"/><div className="section-kicker">04 / CONTACT</div><h2>Have an idea?<br/><span className="gradient-text">Let’s make it happen.</span></h2><p>I’m always happy to connect, learn, and collaborate on interesting ideas.</p><a className="button button-primary" href="mailto:hello@arun-sah.com.np">Say hello <ArrowUpRight size={17}/></a><div className="contact-socials"><a href="https://github.com/Arun-shah" target="_blank" rel="noreferrer"><Github/> GitHub</a><a href="mailto:hello@arun-sah.com.np"><Mail/> Email</a></div></div>
+        <section className="contact-section section-wrap section-block" id="contact">
+          <div className="contact-panel">
+            <div className="section-kicker">04 / CONTACT</div>
+            <Sparkles className="contact-spark" size={26} />
+            <h2>Have an idea?<br /><span className="gradient-text">Let's build something.</span></h2>
+            <p>I'm always glad to connect with fellow learners, developers and people working on interesting ideas.</p>
+            <a className="button button-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=info%40arun-sah.com.np">Say hello <ArrowUpRight size={17} /></a>
+            <div className="contact-email"><Mail size={16} /><a href="https://mail.google.com/mail/?view=cm&fs=1&to=info%40arun-sah.com.np">info@arun-sah.com.np</a></div>
+          </div>
         </section>
       </main>
-      <footer className="footer"><a className="brand" href="#home"><span className="brand-mark">A<span>.</span></span><span>ARUN SAH</span></a><span>Designed & built with curiosity <span className="heart">♥</span> · © {new Date().getFullYear()} Arun Sah</span><a href="#home" className="back-top">Back to top ↑</a></footer>
+
+      <footer className="footer section-wrap">
+        <a className="brand" href="#home"><span className="brand-mark">A</span><span>ARUN<span className="brand-dot">.</span></span></a>
+        <span>Designed & built by Arun Sah · © {new Date().getFullYear()}</span>
+        <div className="socials"><a href="https://github.com/Arun-shah" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={18} /></a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a><a href="https://mail.google.com/mail/?view=cm&fs=1&to=info%40arun-sah.com.np" aria-label="Email"><Mail size={18} /></a></div>
+      </footer>
     </div>
-  );
+  )
 }
-createRoot(document.getElementById("root")).render(<App />);
+
+createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>)
